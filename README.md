@@ -1,0 +1,49 @@
+
+# medium_post - Post draft articles on Medium
+
+This little CLI application is used internally by [Adatas](http://www.adaltas.com) to export our articles as draft into Medium. It is generic enough to be usable and shall be easy to customize to your fit custom needs. It run as a [Node.js](https://nodejs.org) application and the source code is written in [CoffeeScript](https://coffeescript.org)
+
+## Installation
+
+For users not familiar with the Node.js environment, you can follow the [official installation instructions](https://nodejs.org/en/download/) to get started and have the `node`, `npm` and `npx` command available on your system.
+
+This package is published on NPM. Once Node.js is installed, it could be installed and executed with:
+
+```bash
+# Installation
+npm install -g medium_post
+# Print help
+npx medium_post -h
+```
+
+The help print
+
+```
+NAME
+    medium_post - Post draft articles on Medium
+
+SYNOPSIS
+    medium_post [medium_post options]
+
+OPTIONS
+    --source                No description yet for the source option. Required.
+    --url                   No description yet for the url option. Required.
+    --author                No description yet for the author option. Required.
+    --db                    No description yet for the db option.
+    -h --help               Display help information
+
+EXAMPLES
+    medium_post --help      Show this message
+```
+
+## Exemple
+
+Example:
+
+```bash
+coffee index.coffee \
+  --source ./src/md/blog/2019-04-16-recover-efi-failure-dedicated-server/index.en.md \
+  --url http://www.adaltas.com/en/2019/04/16/recover-efi-failure-dedicated-server/ \
+  --author 'Arthur Busser' \
+  --author_url http://www.adaltas.com/en/author/arthur/
+```
