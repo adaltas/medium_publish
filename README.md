@@ -26,10 +26,11 @@ SYNOPSIS
     medium_post [medium_post options]
 
 OPTIONS
-    --source                No description yet for the source option. Required.
-    --url                   No description yet for the url option. Required.
-    --author                No description yet for the author option. Required.
-    --db                    No description yet for the db option.
+    --source                Path to the Mardown source code of the article. Required.
+    --url                   URL where the article is currently being published. Required.
+    --author                The name of the author. Required.
+    --author_url            URL of the author page.
+    --db                    Path to the database, default to "~/.medium_post"
     -h --help               Display help information
 
 EXAMPLES

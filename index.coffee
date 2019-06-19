@@ -15,7 +15,9 @@ app = require('parameters')
       description: 'The name of the author.'
     author_url:
       description: 'URL of the author page.'
-    db: default: "#{require('os').homedir()}/.medium_post"
+    db:
+      description: 'Path to the database, default to "~/.medium_post"'
+      default: "#{require('os').homedir()}/.medium_post"
 
 try
   params = app.parse()
@@ -24,7 +26,6 @@ try
 catch err
   process.stderr.write "#{err.message}\n\n"
   process.stderr.write app.help()
-
 
 config = require('./config')(params.db)
 
@@ -41,10 +42,12 @@ ask = (question) ->
 conf_init = (config) ->
   # Note, we shall be able to use integration token as well, just not tested yet
   unless config.get ['medium']
-    process.stdout.write 'Please register your application token\n'
-    process.stdout.write 'From the Medium > Settings > Developers > Manage applications\n'
-    process.stdout.write 'Create a new application and report below the requested informations.\n'
-    process.stdout.write '\n'
+    process.stdout.write """
+    Please register your application token
+    From the Medium > Settings > Developers > Manage applications
+    Create a new application and report below the requested informations.
+    
+    """
   clientId = config.get ['medium', 'clientId']
   unless clientId
     clientId = await ask 'Medium client ID'
@@ -58,24 +61,25 @@ conf_init = (config) ->
     redirectURL = await ask 'Medium redirect URL'
     config.set ['medium', 'redirectURL'], redirectURL
 
-
 medium_get_refresh_token = (client, config) ->
   redirectURL = config.get ['medium', 'redirectURL']
   new Promise (resolve) ->
     url = client.getAuthorizationUrl 'secretState', redirectURL, [
       medium.Scope.BASIC_PROFILE, medium.Scope.PUBLISH_POST
     ]
-    process.stdout.write 'Copy the url in your browser and paste the code in the redirect URL\n'
+    process.stdout.write 'Copy the url in your browser and '
+    process.stdout.write 'paste the code in the redirect URL\n'
     process.stdout.write "#{url}\n"
     resolve await ask 'Secret'
 
 medium_exchange_access_token = (client, config, refresh_token) ->
   redirectURL = config.get ['medium', 'redirectURL']
   new Promise (resolve, reject) ->
-    client.exchangeAuthorizationCode refresh_token, redirectURL, (err, access_token) ->
-      if err
-      then reject err
-      else resolve access_token
+    client.exchangeAuthorizationCode refresh_token, redirectURL,
+      (err, access_token) ->
+        if err
+        then reject err
+        else resolve access_token
 
 get_article = (source) ->
   vfile = require 'to-vfile'
@@ -101,7 +105,8 @@ get_article = (source) ->
         continue unless child.type is 'yaml'
         meta = yaml.safeLoad child.value
       # Validate article
-      return callback Error 'Invalid Source: lang is invalid' unless meta.lang in ['en', 'fr']
+      unless meta.lang in ['en', 'fr']
+        return callback Error 'Invalid Source: lang is invalid'
       # Add source information
       ast.children.push
         type: 'paragraph'
@@ -172,11 +177,16 @@ main = ->
       clientSecret: config.get ['medium', 'clientSecret']
     token = config.get ['token']
     # Create or renew the authorization token
-    if not token or token.expires_at > Date.now
+    if not token or not token.access_token or token.expires_at > Date.now
+      process.stdout.write "Token expired since #{token.expires_at}\n"
+      process.stdout.write 'Trying to get a new refresh token\n'
       # Get a temporary token
       code = await medium_get_refresh_token client, config
+      process.stdout.write 'Refresh token is #{code}\n'
+      process.stdout.write 'Trying to get a new access token\n'
       # Convert it to an authorization token
       token = await medium_exchange_access_token client, config, code
+      process.stdout.write 'Access token is #{token}\n'
       # Persist the token data
       config.set 'token', token
     else
@@ -191,6 +201,11 @@ main = ->
     process.stdout.write JSON.stringify post, null, '  '
     process.stdout.write '\n\n'
   catch err
-    console.error err
-    process.exit(1)
+    # Note:
+    # * 6003 - Token was invalid
+    # The refresh token and expiration date are good but for some reason the
+    # access token is invalid. Solution is to remove the access token from
+    # "~/.medium_post"
+    process.stderr.write "Uncatched error: #{err.code} - #{err.message}\n"
+    process.exit 1
 main()
