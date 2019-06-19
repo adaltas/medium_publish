@@ -113,16 +113,16 @@ get_article = (source) ->
         children: [
           type: 'text'
           value: switch meta.lang
-            when 'en' then 'This article was originally published on the '
-            when 'fr' then 'Cet article provient du '
+            when 'en' then 'This article was originally published by '
+            when 'fr' then 'Cet article a été publié à l\'origine par '
         ,
           type: 'link'
           url: params.url
           children: [
             type: 'text'
             value: switch meta.lang
-              when 'en' then 'Adaltas website'
-              when 'fr' then 'le site d\'Adaltas'
+              when 'en' then 'Adaltas'
+              when 'fr' then 'Adaltas'
           ]
         ,
           type: 'text'
@@ -162,6 +162,8 @@ medium_post_article = (client, article) ->
         contentFormat: medium.PostContentFormat.HTML
         content: article.contents
         publishStatus: medium.PostPublishStatus.DRAFT
+        canonicalUrl: params.url
+        tags: article.meta.tags
       , (err, post) ->
         if err
         then reject err
