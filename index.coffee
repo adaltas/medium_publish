@@ -107,6 +107,14 @@ get_article = (source) ->
       # Validate article
       unless meta.lang in ['en', 'fr']
         return callback Error 'Invalid Source: lang is invalid'
+      # Normalize absolute link
+      normalize_links = (node) ->
+        if node.type is 'link' and /^\//.test node.url
+          node.url = 'http://www.adaltas.com/' + node.url
+        if node.children
+          node.children = node.children.map (child) -> normalize_links child
+        node
+      ast = normalize_links ast
       # Add source information
       ast.children.push
         type: 'paragraph'
