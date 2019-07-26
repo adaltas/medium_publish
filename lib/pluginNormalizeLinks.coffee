@@ -8,9 +8,7 @@ Normalize absolute link
 ###
 
 module.exports = (settings) ->
-  
   (tree, file) ->
-    
     # normalize_links = (node) ->
     #   if node.type is 'link' and /^\//.test node.url
     #     node.url = path.join 'http://www.adaltas.com/', node.url

@@ -64,6 +64,10 @@ conf_init = (config) ->
   unless baseURL
     redirectURL = await ask 'Base URL for absolute links'
     config.set ['user', 'baseURL'], redirectURL
+  langs = config.get ['user', 'langs']
+  unless baseURL
+    redirectURL = await ask 'Supported languages separated by commas'
+    config.set ['user', 'langs'], langs.split(',').map (lang) -> lang.trim()
 
 medium_get_refresh_token = (client, config) ->
   redirectURL = config.get ['medium', 'redirectURL']
@@ -97,83 +101,56 @@ get_article = (source) ->
   metadata = require 'remark-metadata'
   format = require 'rehype-format'
   html = require 'rehype-stringify'
-  yaml = require 'js-yaml'
   path = require 'path'
+  pluginParseFrontmatter = require './lib/pluginParseFrontmatter'
   pluginNormalizeLinks = require './lib/pluginNormalizeLinks'
   pluginTableToCode = require './lib/pluginTableToCode'
+  pluginValidateLang = require './lib/pluginValidateLang'
+  pluginAppendSource = require './lib/pluginAppendSource'
   baseURL = config.get ['user', 'baseURL']
-  meta = null
+  langs = config.get ['user', 'langs']
   new Promise (resolve, reject) ->
     unified()
     .use parse
     .use frontmatter, ['yaml']
+    .use pluginParseFrontmatter
     .use pluginNormalizeLinks, baseURL: baseURL
     .use pluginTableToCode
-    .use -> (ast) ->
-      # Extract frontmatter
-      for child in ast.children
-        continue unless child.type is 'yaml'
-        meta = yaml.safeLoad child.value
-      # Validate article
-      unless meta.lang in ['en', 'fr']
-        return callback Error 'Invalid Source: lang is invalid'
-      # Add source information
-      ast.children.push
-        type: 'paragraph'
-        children: [
-          type: 'text'
-          value: switch meta.lang
-            when 'en' then 'This article was originally published by '
-            when 'fr' then 'Cet article a été publié à l\'origine par '
-        ,
-          type: 'link'
-          url: params.url
-          children: [
-            type: 'text'
-            value: switch meta.lang
-              when 'en' then 'Adaltas'
-              when 'fr' then 'Adaltas'
-          ]
-        ,
-          type: 'text'
-          value: switch meta.lang
-            when 'en' then ' and was written by '
-            when 'fr' then ' et fut rédigé par '
-        ,
-          type: 'link'
-          url: "http://www.adaltas.com/#{meta.lang}/author/#{meta.author}/"
-          children: [
-            type: 'text'
-            value: params.author
-          ]
-        ,
-          type: 'text'
-          value: '.'
-        ]
-      null
-    .use(remark2rehype)
-    .use(doc)
-    .use(format)
-    .use(html)
+    .use pluginValidateLang, langs
+    .use pluginAppendSource,
+      url: params.url
+      author: params.author
+      authorUrl: params.author_url || (lang) ->
+        # TODO: when switting to Gasty, author url will be internationalized
+        [
+          "http://www.adaltas.com/"
+          vfile.frontmatter.lang
+          "/author/"
+          vfile.frontmatter.author
+          "/"
+        ].join ''
+    .use remark2rehype
+    .use doc
+    .use format
+    .use html
     .process vfile.readSync(source), (err, file) ->
       return reject err if err
-      file.meta = meta
       resolve file
 
 medium_post_article = (client, article) ->
-  throw Error 'Required Property: article.meta.title' unless article.meta.title
+  throw Error 'Required Property: article.frontmatter.title' unless article.frontmatter.title
   throw Error 'Required Property: article.contents' unless article.contents
   new Promise (resolve, reject) ->
     client.getUser (err, user) ->
       return reject err if err
       client.createPost
         userId: user.id
-        title: article.meta.title
+        title: article.frontmatter.title
         contentFormat: medium.PostContentFormat.HTML
         content: article.contents
         publishStatus: medium.PostPublishStatus.DRAFT
         canonicalUrl: params.url
-        tags: article.meta.tags
+        tags: article.frontmatter.tags
       , (err, post) ->
         if err
         then reject err
@@ -218,6 +195,6 @@ main = ->
     # The refresh token and expiration date are good but for some reason the
     # access token is invalid. Solution is to remove the access token from
     # "~/.medium_post"
-    process.stderr.write "Uncatched error: #{err.code} - #{err.message}\n"
+    process.stderr.write "Uncatched error: #{err.code} - #{err.stack}\n"
     process.exit 1
 main()
