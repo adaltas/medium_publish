@@ -60,6 +60,10 @@ conf_init = (config) ->
   unless redirectURL
     redirectURL = await ask 'Medium redirect URL'
     config.set ['medium', 'redirectURL'], redirectURL
+  baseURL = config.get ['user', 'baseURL']
+  unless baseURL
+    redirectURL = await ask 'Base URL for absolute links'
+    config.set ['user', 'baseURL'], redirectURL
 
 medium_get_refresh_token = (client, config) ->
   redirectURL = config.get ['medium', 'redirectURL']
@@ -94,11 +98,17 @@ get_article = (source) ->
   format = require 'rehype-format'
   html = require 'rehype-stringify'
   yaml = require 'js-yaml'
+  path = require 'path'
+  pluginNormalizeLinks = require './lib/pluginNormalizeLinks'
+  pluginTableToCode = require './lib/pluginTableToCode'
+  baseURL = config.get ['user', 'baseURL']
   meta = null
   new Promise (resolve, reject) ->
     unified()
-    .use(parse)
-    .use(frontmatter, ['yaml'])
+    .use parse
+    .use frontmatter, ['yaml']
+    .use pluginNormalizeLinks, baseURL: baseURL
+    .use pluginTableToCode
     .use -> (ast) ->
       # Extract frontmatter
       for child in ast.children
@@ -107,14 +117,6 @@ get_article = (source) ->
       # Validate article
       unless meta.lang in ['en', 'fr']
         return callback Error 'Invalid Source: lang is invalid'
-      # Normalize absolute link
-      normalize_links = (node) ->
-        if node.type is 'link' and /^\//.test node.url
-          node.url = 'http://www.adaltas.com/' + node.url
-        if node.children
-          node.children = node.children.map (child) -> normalize_links child
-        node
-      ast = normalize_links ast
       # Add source information
       ast.children.push
         type: 'paragraph'
