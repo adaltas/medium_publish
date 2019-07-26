@@ -27,7 +27,7 @@ catch err
   process.stderr.write "#{err.message}\n\n"
   process.stderr.write app.help()
 
-config = require('./config')(params.db)
+config = require('./lib/config')(params.db)
 
 ask = (question) ->
   new Promise (resolve) ->
