@@ -65,8 +65,8 @@ conf_init = (config) ->
     redirectURL = await ask 'Base URL for absolute links'
     config.set ['user', 'baseURL'], redirectURL
   langs = config.get ['user', 'langs']
-  unless baseURL
-    redirectURL = await ask 'Supported languages separated by commas'
+  unless langs
+    langs = await ask 'Supported languages separated by commas'
     config.set ['user', 'langs'], langs.split(',').map (lang) -> lang.trim()
 
 medium_get_refresh_token = (client, config) ->
@@ -167,7 +167,7 @@ main = ->
     token = config.get ['token']
     # Create or renew the authorization token
     if not token or not token.access_token or token.expires_at > Date.now
-      process.stdout.write "Token expired since #{token.expires_at}\n"
+      process.stdout.write "Token expired since #{token.expires_at}\n" if token
       process.stdout.write 'Trying to get a new refresh token\n'
       # Get a temporary token
       code = await medium_get_refresh_token client, config
@@ -190,11 +190,15 @@ main = ->
     process.stdout.write JSON.stringify post, null, '  '
     process.stdout.write '\n\n'
   catch err
-    # Note:
-    # * 6003 - Token was invalid
-    # The refresh token and expiration date are good but for some reason the
-    # access token is invalid. Solution is to remove the access token from
-    # "~/.medium_post"
-    process.stderr.write "Uncatched error: #{err.code} - #{err.stack}\n"
+    ### Note:
+    # 6003 - Token was invalid
+    The refresh token and expiration date are good but for some reason the
+    access token is invalid. Solution is to remove the access token from
+    "~/.medium_post"
+    Happened:
+    1. somewhere in june (see git log)
+    2. sep 9, 2019
+    ###
+    process.stderr.write "Uncatched error: #{err.code} - #{err.stack || err.message}\n"
     process.exit 1
 main()
