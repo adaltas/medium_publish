@@ -26,7 +26,7 @@ SYNOPSIS
     medium_post [medium_post options]
 
 OPTIONS
-    --source                Path to the Mardown source code of the article. Required.
+    --source                Path to the Markdown source code of the article. Required.
     --url                   URL where the article is currently being published. Required.
     --author                The name of the author. Required.
     --author_url            URL of the author page.
