@@ -26,6 +26,7 @@ try
 catch err
   process.stderr.write "#{err.message}\n\n"
   process.stderr.write app.help()
+  return
 
 config = require('./lib/config')(params.db)
 
@@ -58,12 +59,12 @@ conf_init = (config) ->
     config.set ['medium', 'clientSecret'], clientSecret
   redirectURL = config.get ['medium', 'redirectURL']
   unless redirectURL
-    redirectURL = await ask 'Medium redirect URL'
+    redirectURL = await ask 'Medium redirect URL (must match the application callback URL)'
     config.set ['medium', 'redirectURL'], redirectURL
   baseURL = config.get ['user', 'baseURL']
   unless baseURL
-    redirectURL = await ask 'Base URL for absolute links'
-    config.set ['user', 'baseURL'], redirectURL
+    baseURL = await ask 'Base URL for absolute links'
+    config.set ['user', 'baseURL'], baseURL
   langs = config.get ['user', 'langs']
   unless langs
     langs = await ask 'Supported languages separated by commas'
@@ -175,7 +176,7 @@ main = ->
       process.stdout.write 'Trying to get a new access token\n'
       # Convert it to an authorization token
       token = await medium_exchange_access_token client, config, code
-      process.stdout.write 'Access token is #{token}\n'
+      process.stdout.write "Access token is #{token}\n"
       # Persist the token data
       config.set 'token', token
     else
@@ -196,8 +197,9 @@ main = ->
     access token is invalid. Solution is to remove the access token from
     "~/.medium_post"
     Happened:
-    1. somewhere in june (see git log)
-    2. sep 9, 2019
+    somewhere in june (see git log)
+    sep 9, 2019
+    nov 18, 2019: Uncatched error: 6000 - Access token is invalid.
     ###
     process.stderr.write "Uncatched error: #{err.code} - #{err.stack || err.message}\n"
     process.exit 1
