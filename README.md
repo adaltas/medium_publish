@@ -39,8 +39,6 @@ EXAMPLES
 
 ## Exemple
 
-Example:
-
 ```bash
 coffee index.coffee \
   --source ./src/md/blog/2019-04-16-recover-efi-failure-dedicated-server/index.en.md \
