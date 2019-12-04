@@ -32,7 +32,32 @@ catch err
     config = require('./config')(params.db)
     await config.load()
     await config.init() if process.stdin.isTTY
-    require('.')(config, params)
+    plugins = [
+      plugin: require './plugins/parse_frontmatter'
+    ,
+      plugin: require './plugins/normalize_links'
+      settings:
+        baseURL: config.get ['user', 'baseURL']
+    ,
+      plugin: require './plugins/table_to_code'
+    ,
+      plugin: require './plugins/validate_lang'
+    ,
+      plugin: require './plugins/append_source'
+      settings:
+        url: params.url
+        author: params.author
+        authorUrl: params.author_url || (lang) ->
+          # TODO: when switting to Gasty, author url will be internationalized
+          [
+            "http://www.adaltas.com/"
+            vfile.frontmatter.lang
+            "/author/"
+            vfile.frontmatter.author
+            "/"
+          ].join ''
+    ]
+    require('.')(config, params, plugins)
   catch err
     process.stderr.write "\n#{err.stack}\n\n"
 )()

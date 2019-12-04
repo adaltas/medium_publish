@@ -30,51 +30,25 @@ medium_exchange_access_token = (client, config, refresh_token) ->
         then reject err
         else resolve access_token
 
-get_article = (config, params) ->
+get_article = (config, params, plugins) ->
   vfile = require 'to-vfile'
-  report = require 'vfile-reporter'
   unified = require 'unified'
   doc = require 'rehype-document'
   parse = require 'remark-parse'
   remark2rehype = require 'remark-rehype'
-  stringify = require 'remark-stringify'
   frontmatter = require 'remark-frontmatter'
-  metadata = require 'remark-metadata'
   format = require 'rehype-format'
   html = require 'rehype-stringify'
-  path = require 'path'
-  pluginParseFrontmatter = require './plugins/parse_frontmatter'
-  pluginNormalizeLinks = require './plugins/normalize_links'
-  pluginTableToCode = require './plugins/table_to_code'
-  pluginValidateLang = require './plugins/validate_lang'
-  pluginAppendSource = require './plugins/append_source'
-  baseURL = config.get ['user', 'baseURL']
-  langs = config.get ['user', 'langs']
   new Promise (resolve, reject) ->
-    unified()
-    .use parse
-    .use frontmatter, ['yaml']
-    .use pluginParseFrontmatter
-    .use pluginNormalizeLinks, baseURL: baseURL
-    .use pluginTableToCode
-    .use pluginValidateLang, langs
-    .use pluginAppendSource,
-      url: params.url
-      author: params.author
-      authorUrl: params.author_url || (lang) ->
-        # TODO: when switting to Gasty, author url will be internationalized
-        [
-          "http://www.adaltas.com/"
-          vfile.frontmatter.lang
-          "/author/"
-          vfile.frontmatter.author
-          "/"
-        ].join ''
-    .use remark2rehype
-    .use doc
-    .use format
-    .use html
-    .process vfile.readSync(params.source), (err, file) ->
+    u = unified()
+    u.use parse
+    u.use frontmatter, ['yaml']
+    u.use plugin, settings for {plugin, settings} in plugins
+    u.use remark2rehype
+    u.use doc
+    u.use format
+    u.use html
+    u.process vfile.readSync(params.source), (err, file) ->
       return reject err if err
       resolve file
 
@@ -97,7 +71,7 @@ medium_post_article = (client, params, article) ->
         then reject err
         else resolve post
 
-module.exports = (config, params) ->
+module.exports = (config, params, plugins) ->
   try
     await config.load()
     # Initialise the Medium client
@@ -121,7 +95,7 @@ module.exports = (config, params) ->
     else
       client.setAccessToken token.access_token
     # Generate article
-    article = await get_article config, params
+    article = await get_article config, params, plugins
     # Post article
     post = await medium_post_article client, params, article
     # Print user feedback
