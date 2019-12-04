@@ -17,6 +17,10 @@ app = require('parameters')
     db:
       description: 'Path to the database, default to "~/.medium_post"'
       default: "#{require('os').homedir()}/.medium_post"
+    langs:
+      description: 'Accepted languages'
+      type: 'array'
+      default: []
 
 try
   params = app.parse()
@@ -42,6 +46,8 @@ catch err
       plugin: require './plugins/table_to_code'
     ,
       plugin: require './plugins/validate_lang'
+      settings:
+        langs: params.langs
     ,
       plugin: require './plugins/append_source'
       settings:
