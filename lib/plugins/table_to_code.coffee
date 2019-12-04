@@ -1,11 +1,11 @@
 
 visit = require 'unist-util-visit'
-mdAstToString = require '../utils/mdAstToString'
+md_ast_to_string = require '../utils/md_ast_to_string'
 
 module.exports = ->
   (tree, file) ->
     visit tree, 'table', (node) ->
-      value = mdAstToString node
+      value = md_ast_to_string node
       node.type = 'code'
       node.lang = null
       node.meta = null
