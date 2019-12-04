@@ -1,35 +1,5 @@
 medium = require 'medium-sdk'
 
-app = require('parameters')
-  name: 'medium_post'
-  description: 'Post draft articles on Medium'
-  options:
-    source:
-      required: true
-      description: 'Path to the Mardown source code of the article.'
-    url:
-      required: true
-      description: 'URL where the article is currently being published.'
-    author:
-      required: true
-      description: 'The name of the author.'
-    author_url:
-      description: 'URL of the author page.'
-    db:
-      description: 'Path to the database, default to "~/.medium_post"'
-      default: "#{require('os').homedir()}/.medium_post"
-
-try
-  params = app.parse()
-  if command = app.helping(params)
-    return process.stderr.write app.help command
-catch err
-  process.stderr.write "#{err.message}\n\n"
-  process.stderr.write app.help()
-  return
-
-config = require('./lib/config')(params.db)
-
 ask = (question) ->
   new Promise (resolve) ->
     readline = require 'readline'
@@ -39,36 +9,6 @@ ask = (question) ->
     rl.question "#{question}: ", (answer) ->
       rl.close()
       resolve answer
-
-conf_init = (config) ->
-  # Note, we shall be able to use integration token as well, just not tested yet
-  unless config.get ['medium']
-    process.stdout.write """
-    Please register your application token
-    From the Medium > Settings > Developers > Manage applications
-    Create a new application and report below the requested informations.
-    
-    """
-  clientId = config.get ['medium', 'clientId']
-  unless clientId
-    clientId = await ask 'Medium client ID'
-    config.set ['medium', 'clientId'], clientId
-  clientSecret = config.get ['medium', 'clientSecret']
-  unless clientSecret
-    clientSecret = await ask 'Medium client secret'
-    config.set ['medium', 'clientSecret'], clientSecret
-  redirectURL = config.get ['medium', 'redirectURL']
-  unless redirectURL
-    redirectURL = await ask 'Medium redirect URL (must match the application callback URL)'
-    config.set ['medium', 'redirectURL'], redirectURL
-  baseURL = config.get ['user', 'baseURL']
-  unless baseURL
-    baseURL = await ask 'Base URL for absolute links'
-    config.set ['user', 'baseURL'], baseURL
-  langs = config.get ['user', 'langs']
-  unless langs
-    langs = await ask 'Supported languages separated by commas'
-    config.set ['user', 'langs'], langs.split(',').map (lang) -> lang.trim()
 
 medium_get_refresh_token = (client, config) ->
   redirectURL = config.get ['medium', 'redirectURL']
@@ -90,7 +30,7 @@ medium_exchange_access_token = (client, config, refresh_token) ->
         then reject err
         else resolve access_token
 
-get_article = (source) ->
+get_article = (config, params) ->
   vfile = require 'to-vfile'
   report = require 'vfile-reporter'
   unified = require 'unified'
@@ -103,11 +43,11 @@ get_article = (source) ->
   format = require 'rehype-format'
   html = require 'rehype-stringify'
   path = require 'path'
-  pluginParseFrontmatter = require './lib/pluginParseFrontmatter'
-  pluginNormalizeLinks = require './lib/pluginNormalizeLinks'
-  pluginTableToCode = require './lib/pluginTableToCode'
-  pluginValidateLang = require './lib/pluginValidateLang'
-  pluginAppendSource = require './lib/pluginAppendSource'
+  pluginParseFrontmatter = require './plugins/parse_frontmatter'
+  pluginNormalizeLinks = require './plugins/normalize_links'
+  pluginTableToCode = require './plugins/table_to_code'
+  pluginValidateLang = require './plugins/validate_lang'
+  pluginAppendSource = require './plugins/append_source'
   baseURL = config.get ['user', 'baseURL']
   langs = config.get ['user', 'langs']
   new Promise (resolve, reject) ->
@@ -134,11 +74,11 @@ get_article = (source) ->
     .use doc
     .use format
     .use html
-    .process vfile.readSync(source), (err, file) ->
+    .process vfile.readSync(params.source), (err, file) ->
       return reject err if err
       resolve file
 
-medium_post_article = (client, article) ->
+medium_post_article = (client, params, article) ->
   throw Error 'Required Property: article.frontmatter.title' unless article.frontmatter.title
   throw Error 'Required Property: article.contents' unless article.contents
   new Promise (resolve, reject) ->
@@ -157,10 +97,9 @@ medium_post_article = (client, article) ->
         then reject err
         else resolve post
 
-main = ->
+module.exports = (config, params) ->
   try
-    conf = await config.load()
-    await conf_init config
+    await config.load()
     # Initialise the Medium client
     client = new medium.MediumClient
       clientId: config.get ['medium', 'clientId']
@@ -180,11 +119,11 @@ main = ->
       # Persist the token data
       config.set 'token', token
     else
-      client.setAccessToken conf.token.access_token
+      client.setAccessToken token.access_token
     # Generate article
-    article = await get_article params.source
+    article = await get_article config, params
     # Post article
-    post = await medium_post_article client, article
+    post = await medium_post_article client, params, article
     # Print user feedback
     process.stdout.write 'Article was successfull posted as draft:'
     process.stdout.write '\n\n'
@@ -203,4 +142,3 @@ main = ->
     ###
     process.stderr.write "Uncatched error: #{err.code} - #{err.stack || err.message}\n"
     process.exit 1
-main()

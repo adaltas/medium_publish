@@ -3,7 +3,7 @@ unified = require 'unified'
 parse = require 'remark-parse'
 remark2rehype = require 'remark-rehype'
 html = require 'rehype-stringify'
-pluginTableToCode = require '../lib/pluginTableToCode'
+pluginTableToCode = require '../../lib/plugins/table_to_code'
 
 describe 'Markdown table to AST', ->
   

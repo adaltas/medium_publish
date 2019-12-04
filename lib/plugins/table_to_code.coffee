@@ -1,6 +1,6 @@
 
 visit = require 'unist-util-visit'
-mdAstToString = require './mdAstToString'
+mdAstToString = require '../utils/mdAstToString'
 
 module.exports = ->
   (tree, file) ->

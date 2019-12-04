@@ -16,7 +16,7 @@ npm install -g medium_post
 npx medium_post -h
 ```
 
-The help print
+The help print:
 
 ```
 NAME
@@ -39,10 +39,12 @@ EXAMPLES
 
 ## Exemple
 
+Use `npx medium_post` if installed globally or locally as a dependency. Otherwise, from inside a cloned repository, use `./bin/medium_post`.
+
 ```bash
-coffee index.coffee \
-  --source ./src/md/blog/2019-04-16-recover-efi-failure-dedicated-server/index.en.md \
-  --url http://www.adaltas.com/en/2019/04/16/recover-efi-failure-dedicated-server/ \
-  --author 'Arthur Busser' \
-  --author_url http://www.adaltas.com/en/author/arthur/
+npx medium_post \
+  --source /Users/wdavidw/projects/adaltas/gatsby/content/articles/2019/2019-12-03-ozone-1/index.fr.md \
+  --url https://www.adaltas.com/en/2019/12/03/hadoop-ozone-1-filesystem-introduction/ \
+  --author 'Paul-Adrien Cordonnier' \
+  --author_url https://www.adaltas.com/en/author/paul-adrien/
 ```

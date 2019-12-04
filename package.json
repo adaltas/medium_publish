@@ -3,11 +3,21 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-    "test": "mocha test/**/*.coffee"
-  },
   "author": "",
   "license": "ISC",
+  "coffeelintConfig": {
+    "indentation": {
+      "level": "error",
+      "value": 2
+    },
+    "line_endings": {
+      "level": "error",
+      "value": "unix"
+    },
+    "max_line_length": {
+      "level": "ignore"
+    }
+  },
   "dependencies": {
     "js-yaml": "^3.13.1",
     "medium-sdk": "^0.0.4",
@@ -34,5 +44,9 @@
     "csv-spectrum": "^1.0.0",
     "mocha": "^6.2.2",
     "should": "^13.2.3"
+  },
+  "scripts": {
+    "post": "coffee lib/cli.coffee",
+    "test": "mocha test/**/*.coffee"
   }
 }

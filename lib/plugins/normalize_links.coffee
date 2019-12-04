@@ -1,7 +1,7 @@
 
 path = require 'path'
 visit = require 'unist-util-visit'
-mdAstToString = require './mdAstToString'
+mdAstToString = require '../utils/mdAstToString'
 
 ###
 Normalize absolute link

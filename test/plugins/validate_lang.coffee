@@ -5,10 +5,9 @@ parse = require 'remark-parse'
 remark2rehype = require 'remark-rehype'
 html = require 'rehype-stringify'
 frontmatter = require 'remark-frontmatter'
-pluginParseFrontmatter = require '../lib/pluginParseFrontmatter'
-pluginTableToCode = require '../lib/pluginTableToCode'
+pluginParseFrontmatter = require '../../lib/Plugins/parse_frontmatter'
 
-describe 'Markdown table to AST', ->
+describe 'Markdown validate lang', ->
   
   it 'simple', ->
     {frontmatter} = await unified()
@@ -19,9 +18,8 @@ describe 'Markdown table to AST', ->
     .use html
     .process """
     ---
-    title: 'Article'
     lang: fr
     ---
     """
-    frontmatter.should.eql title: 'Article', lang: 'fr'
+    frontmatter.should.eql lang: 'fr'
     

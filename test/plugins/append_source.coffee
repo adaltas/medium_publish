@@ -6,8 +6,8 @@ remark2rehype = require 'remark-rehype'
 html = require 'rehype-stringify'
 frontmatter = require 'remark-frontmatter'
 format = require 'rehype-format'
-pluginParseFrontmatter = require '../lib/pluginParseFrontmatter'
-pluginAppendSource = require '../lib/pluginAppendSource'
+pluginParseFrontmatter = require '../../lib/plugins/parse_frontmatter'
+pluginAppendSource = require '../../lib/plugins/append_source'
 
 describe 'Append source and author information', ->
   
