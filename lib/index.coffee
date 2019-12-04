@@ -1,4 +1,5 @@
 medium = require 'medium-sdk'
+md_to_html = require './urils/md_to_html'
 ask = require './utils/ask'
 
 medium_get_refresh_token = (client, config) ->
@@ -20,28 +21,6 @@ medium_exchange_access_token = (client, config, refresh_token) ->
         if err
         then reject err
         else resolve access_token
-
-get_article = (config, params, plugins) ->
-  vfile = require 'to-vfile'
-  unified = require 'unified'
-  doc = require 'rehype-document'
-  parse = require 'remark-parse'
-  remark2rehype = require 'remark-rehype'
-  frontmatter = require 'remark-frontmatter'
-  format = require 'rehype-format'
-  html = require 'rehype-stringify'
-  new Promise (resolve, reject) ->
-    u = unified()
-    u.use parse
-    u.use frontmatter, ['yaml']
-    u.use plugin, settings for {plugin, settings} in plugins
-    u.use remark2rehype
-    u.use doc
-    u.use format
-    u.use html
-    u.process vfile.readSync(params.source), (err, file) ->
-      return reject err if err
-      resolve file
 
 medium_post_article = (client, params, article) ->
   throw Error 'Required Property: article.frontmatter.title' unless article.frontmatter.title
@@ -86,7 +65,7 @@ module.exports = (config, params, plugins) ->
     else
       client.setAccessToken token.access_token
     # Generate article
-    article = await get_article config, params, plugins
+    article = await md_to_html plugins, source
     # Post article
     post = await medium_post_article client, params, article
     # Print user feedback
