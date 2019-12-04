@@ -6,12 +6,6 @@ module.exports = (settings={})->
   throw Error 'Invalid Settings: missing the `author` field' unless settings.author
   throw Error 'Invalid Settings: missing the `authorUrl` field' unless settings.authorUrl
   (ast, vfile) ->
-    if typeof settings.authorUrl is 'string'
-      authorUrl = settings.authorUrl
-    else if typeof settings.authorUrl is 'function'
-      authorUrl = settings.authorUrl vfile.frontmatter.lang
-    else
-      throw Error 'Invalid Settings: authorUrl must be a string or a function'
     # Add source information
     ast.children.push
       type: 'paragraph'
@@ -36,7 +30,7 @@ module.exports = (settings={})->
           when 'fr' then ' et fut rédigé par '
       ,
         type: 'link'
-        url: authorUrl
+        url: settings.authorUrl
         children: [
           type: 'text'
           value: settings.author

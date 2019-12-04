@@ -53,15 +53,7 @@ catch err
       settings:
         url: params.url
         author: params.author
-        authorUrl: params.author_url || (lang) ->
-          # TODO: when switting to Gasty, author url will be internationalized
-          [
-            "http://www.adaltas.com/"
-            vfile.frontmatter.lang
-            "/author/"
-            vfile.frontmatter.author
-            "/"
-          ].join ''
+        authorUrl: params.author_url
     ]
     require('.')(config, params, plugins)
   catch err
