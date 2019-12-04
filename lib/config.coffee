@@ -1,6 +1,7 @@
 
 fs = require 'fs'
 yaml = require 'js-yaml'
+ask = require './utils/ask'
 
 module.exports = (target) ->
   store = null

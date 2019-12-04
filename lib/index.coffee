@@ -1,14 +1,5 @@
 medium = require 'medium-sdk'
-
-ask = (question) ->
-  new Promise (resolve) ->
-    readline = require 'readline'
-    rl = readline.createInterface
-      input: process.stdin
-      output: process.stdout
-    rl.question "#{question}: ", (answer) ->
-      rl.close()
-      resolve answer
+ask = require './utils/ask'
 
 medium_get_refresh_token = (client, config) ->
   redirectURL = config.get ['medium', 'redirectURL']
