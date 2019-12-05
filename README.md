@@ -43,8 +43,9 @@ Use `npx medium_post` if installed globally or locally as a dependency. Otherwis
 
 ```bash
 npx medium_post \
-  --source /Users/wdavidw/projects/adaltas/gatsby/content/articles/2019/2019-12-03-ozone-1/index.fr.md \
-  --url https://www.adaltas.com/en/2019/12/03/hadoop-ozone-1-filesystem-introduction/ \
-  --author 'Paul-Adrien Cordonnier' \
-  --author_url https://www.adaltas.com/en/author/paul-adrien/
+  --source ./path/to/article.md \
+  --url http://www.adaltas.com/en/my_article/ \
+  --author 'Author Name' \
+  --author_url http://www.adaltas.com/en/author/name/ \
+  --langs en,fr
 ```
