@@ -34,7 +34,7 @@ describe 'Append source and author information', ->
     <p>Article content.</p>
     <p>This article was originally published by <a href="http://www.adaltas.com">Adaltas</a> and was written by <a href="http://www.adaltas.com/author/myself/">myself</a>.</p>
     """
-      
+  
   it 'authorUrl as a function', ->
     {contents} = await unified()
     .use parse
@@ -43,7 +43,7 @@ describe 'Append source and author information', ->
     .use pluginAppendSource,
       url: 'http://www.adaltas.com'
       author: 'myself'
-      authorUrl: (lang) ->
+      authorUrl: (ast, {frontmatter: {lang}}) ->
         lang.should.eql 'en'
         'http://www.adaltas.com/author/myself/'
     .use remark2rehype
