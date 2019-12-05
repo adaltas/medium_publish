@@ -1,5 +1,5 @@
 
-# medium_post - Post draft articles on Medium
+# medium_post - Post draft articles to Medium
 
 This little CLI application is used internally by [Adatas](http://www.adaltas.com) to export our articles as draft into Medium. It is generic enough to be usable and shall be easy to customize to your fit custom needs. It run as a [Node.js](https://nodejs.org) application and the source code is written in [CoffeeScript](https://coffeescript.org)
 

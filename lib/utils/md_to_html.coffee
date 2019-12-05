@@ -19,5 +19,5 @@ module.exports = (plugins, source) ->
     u.use format
     u.use html
     u.process vfile.readSync(source), (err, file) ->
-    return reject err if err
-    resolve file
+      return reject err if err
+      resolve file
