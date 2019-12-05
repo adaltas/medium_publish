@@ -39,7 +39,7 @@ module.exports = (config, params, plugins) ->
     # 6003 - Token was invalid
     The refresh token and expiration date are good but for some reason the
     access token is invalid. Solution is to remove the access token from
-    "~/.medium_post"
+    "~/.medium_publish"
     Happened:
     somewhere in june (see git log)
     sep 9, 2019

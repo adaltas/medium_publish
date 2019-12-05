@@ -1,5 +1,5 @@
 {
-  "name": "medium_post",
+  "name": "medium_publish",
   "version": "0.0.0",
   "description": "Post draft articles to Medium",
   "keywords": [
@@ -11,10 +11,10 @@
     "publication"
   ],
   "bin": {
-    "medium_post": "bin/medium_post"
+    "medium_publish": "bin/medium_publish"
   },
   "homepage": "https://www.adaltas.com/",
-  "bugs": "https://github.com/adaltas/node-medium_post/issues",
+  "bugs": "https://github.com/adaltas/node-medium_publish/issues",
   "author": "David Worms <david@adaltas.com> (https://www.adaltas.com)",
   "contributors": [
     "David Worms <david@adaltas.com> (https://www.adaltas.com)"

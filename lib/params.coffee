@@ -1,6 +1,6 @@
 
 module.exports =
-  name: 'medium_post'
+  name: 'medium_publish'
   description: 'Post draft articles on Medium'
   options:
     source:
@@ -15,8 +15,8 @@ module.exports =
     author_url:
       description: 'URL of the author page.'
     db:
-      description: 'Path to the database, default to "~/.medium_post"'
-      default: "#{require('os').homedir()}/.medium_post"
+      description: 'Path to the database, default to "~/.medium_publish"'
+      default: "#{require('os').homedir()}/.medium_publish"
     langs:
       description: 'Accepted languages'
       type: 'array'
