@@ -3,7 +3,7 @@ unified = require 'unified'
 parse = require 'remark-parse'
 remark2rehype = require 'remark-rehype'
 html = require 'rehype-stringify'
-md_ast_to_string = require '../../lib/utils/md_ast_to_string'
+md_ast_to_string = require '../../src/utils/md_ast_to_string'
 
 describe 'Append source and author information', ->
   

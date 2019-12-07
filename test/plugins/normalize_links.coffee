@@ -3,7 +3,7 @@ unified = require 'unified'
 parse = require 'remark-parse'
 remark2rehype = require 'remark-rehype'
 html = require 'rehype-stringify'
-pluginNormalizeLinks = require '../../lib/plugins/normalize_links'
+pluginNormalizeLinks = require '../../src/plugins/normalize_links'
 format = require 'rehype-format'
 
 describe 'Normalize absolute links', ->

@@ -5,8 +5,8 @@ parse = require 'remark-parse'
 remark2rehype = require 'remark-rehype'
 html = require 'rehype-stringify'
 frontmatter = require 'remark-frontmatter'
-pluginParseFrontmatter = require '../../lib/plugins/parse_frontmatter'
-pluginTableToCode = require '../../lib/plugins/table_to_code'
+pluginParseFrontmatter = require '../../src/plugins/parse_frontmatter'
+pluginTableToCode = require '../../src/plugins/table_to_code'
 
 describe 'Markdown table to AST', ->
   
