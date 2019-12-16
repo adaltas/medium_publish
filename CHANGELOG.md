@@ -1,6 +1,10 @@
 
 # Changelog
 
+## Trunk
+
+* package: fix build cmd
+
 ## Version 0.0.2
 
 * package: build js
