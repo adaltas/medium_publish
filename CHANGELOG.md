@@ -1,7 +1,7 @@
 
 # Changelog
 
-## Trunk
+## Version 0.0.4
 
 * cli: fix message relative to access token
 

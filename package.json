@@ -1,6 +1,6 @@
 {
   "name": "medium_publish",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Post draft articles to Medium",
   "keywords": [
     "medium",
