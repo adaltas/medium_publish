@@ -1,6 +1,10 @@
 
 # Changelog
 
+## Trunk
+
+* cli: fix message relative to access token
+
 ## Version 0.0.3
 
 * package: fix build cmd

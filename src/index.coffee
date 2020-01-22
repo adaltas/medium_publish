@@ -20,7 +20,7 @@ module.exports = (config, params, plugins) ->
       process.stdout.write 'Trying to get a new access token\n'
       # Convert it to an authorization token
       token = await exchange_access_token client, config, code
-      process.stdout.write "Access token is #{token}\n"
+      process.stdout.write "Access token is #{token.access_token}\n"
       # Persist the token data
       config.set 'token', token
     else
@@ -44,6 +44,7 @@ module.exports = (config, params, plugins) ->
     somewhere in june (see git log)
     sep 9, 2019
     nov 18, 2019: Uncatched error: 6000 - Access token is invalid.
+    jan 22, 2020: Uncatched error: 6000 - Access token is invalid.
     ###
     process.stderr.write "Uncatched error: #{err.code} - #{err.stack || err.message}\n"
     process.exit 1
