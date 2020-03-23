@@ -46,5 +46,14 @@ module.exports = (config, params, plugins) ->
     nov 18, 2019: Uncatched error: 6000 - Access token is invalid.
     jan 22, 2020: Uncatched error: 6000 - Access token is invalid.
     ###
-    process.stderr.write "Uncatched error: #{err.code} - #{err.stack || err.message}\n"
+    if err.code is 6000
+      await config.backup()
+      await config.set ['token', 'access_token'], null
+      process.stdout.write "Token expired."
+      process.stdout.write "Previous access token was erased from configuration."
+      process.stdout.write "Please run this command again."
+      process.stdout.write '\n\n'
+      process.exit 6
+      return
+    process.stderr.write "Uncatched error: #{err.code} - #{err.stack || err.message}\n\n"
     process.exit 1

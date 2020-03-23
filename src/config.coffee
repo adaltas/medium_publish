@@ -1,10 +1,12 @@
 
-fs = require 'fs'
+fs = require('fs').promises
 yaml = require 'js-yaml'
 ask = require './utils/ask'
 
 module.exports = (target) ->
   store = null
+  backup: ->
+    await fs.copyFile target, target+'.bck'
   init: ->
     # Note, we shall be able to use integration token as well, just not tested yet
     unless this.get ['medium']
@@ -36,11 +38,11 @@ module.exports = (target) ->
       this.set ['user', 'langs'], langs.split(',').map (lang) -> lang.trim()
   load: ->
     try
-      stat = await fs.promises.stat target
+      stat = await fs.stat target
     catch err
       throw err unless err.code is 'ENOENT'
-      await fs.promises.writeFile target, yaml.safeDump {}
-    data = await fs.promises.readFile target
+      await fs.writeFile target, yaml.safeDump {}
+    data = await fs.readFile target
     data = yaml.safeLoad data.toString()
     store = data
   get: (key) ->
@@ -60,5 +62,5 @@ module.exports = (target) ->
     k = key.slice(-1)
     data[k] = value
     data = yaml.safeDump store
-    await fs.promises.writeFile target, data
+    await fs.writeFile target, data
     @

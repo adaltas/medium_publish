@@ -1,6 +1,10 @@
 
 # Changelog
 
+## Trunk
+
+* medium: erased access token if expired
+
 ## Version 0.0.4
 
 * cli: fix message relative to access token
