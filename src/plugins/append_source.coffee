@@ -16,7 +16,7 @@ module.exports = (settings={})->
         type: 'text'
         value: switch vfile.frontmatter.lang
           when 'en' then 'This article was originally published by '
-          when 'fr' then 'Cet article a été publié à l\'origine par '
+          when 'fr' then 'Cet article fut publié à l\'origine par '
       ,
         type: 'link'
         url: settings.url

@@ -1,6 +1,10 @@
 
 # Changelog
 
+## Trunk
+
+* i18n: fix fr traduction in append source
+
 ## Version 0.0.5
 
 * medium: erased access token if expired
