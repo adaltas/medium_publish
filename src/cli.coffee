@@ -25,6 +25,8 @@ catch err
     ,
       plugin: require './plugins/table_to_code'
     ,
+    #   plugin: require './plugins/public_images'
+    # ,
       plugin: require './plugins/validate_lang'
       settings:
         langs: params.langs

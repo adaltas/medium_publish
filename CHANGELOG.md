@@ -1,6 +1,10 @@
 
 # Changelog
 
+## Trunk
+
+* public_images: new plugin
+
 ## Version 0.0.6
 
 * i18n: fix fr traduction in append source

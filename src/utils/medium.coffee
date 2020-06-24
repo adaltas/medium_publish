@@ -7,7 +7,8 @@ module.exports =
     redirectURL = config.get ['medium', 'redirectURL']
     new Promise (resolve) ->
       url = client.getAuthorizationUrl 'secretState', redirectURL, [
-        medium.Scope.BASIC_PROFILE, medium.Scope.PUBLISH_POST
+        medium.Scope.BASIC_PROFILE, medium.Scope.PUBLISH_POST,
+        # uploadImage scope is subject to Medium agreement
       ]
       process.stdout.write 'Copy the url in your browser and '
       process.stdout.write 'paste the code in the redirect URL\n'

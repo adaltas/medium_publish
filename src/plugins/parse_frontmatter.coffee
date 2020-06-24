@@ -2,7 +2,7 @@
 yaml = require 'js-yaml'
 
 ###
-Parse frontmatter and insert the "frontmatter" field in the vfile
+Parse frontmatter and insert the "frontmatter" field in the vfile object.
 ###
 
 module.exports = ->
@@ -12,4 +12,3 @@ module.exports = ->
       continue unless child.type is 'yaml'
       vfile.frontmatter = yaml.safeLoad child.value
     null
-    

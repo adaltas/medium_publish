@@ -49,3 +49,23 @@ npx medium_publish \
   --author_url http://www.adaltas.com/en/author/name/ \
   --langs en,fr
 ```
+
+## Plugins
+
+* `medium_publish/lib/plugins/parse_frontmatter`   
+  Parse frontmatter and insert the "frontmatter" field in the vfile object.
+* `medium_publish/lib/plugins/public_images`   
+  Upload every image present on the markdown article into a public GIT repository and update the `src` image attribute to reflect the new public URL.
+  Options:
+  * `base_url` (string, required)   
+    Base URL used to download the images.
+  * `location` (function)   
+    User function used to formal the image location relative to the repository location.
+  * `repository` (string, required)   
+    Remote GIT repository URL.
+  * `reset` (boolean, `false`)   
+    Overwrite the previous commit and images
+  * `source` (string, required)   
+    Location of the markdown file
+  * `target` (string, required)   
+    Directory storing the git repository.
