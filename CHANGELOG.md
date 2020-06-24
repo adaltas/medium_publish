@@ -1,7 +1,7 @@
 
 # Changelog
 
-## Trunk
+## Version 0.1.0
 
 * public_images: new plugin
 
