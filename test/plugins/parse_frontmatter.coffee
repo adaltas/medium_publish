@@ -1,5 +1,4 @@
 
-require 'should'
 unified = require 'unified'
 parse = require 'remark-parse'
 remark2rehype = require 'remark-rehype'
@@ -24,4 +23,3 @@ describe 'Markdown table to AST', ->
     ---
     """
     frontmatter.should.eql title: 'Article', lang: 'fr'
-    

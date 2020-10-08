@@ -1,5 +1,4 @@
 
-require 'should'
 unified = require 'unified'
 parse = require 'remark-parse'
 remark2rehype = require 'remark-rehype'

@@ -1,6 +1,4 @@
 
-path = require 'path'
-
 module.exports = (settings={})->
   throw Error 'Invalid Settings: missing the `url` field' unless settings.url
   throw Error 'Invalid Settings: missing the `author` field' unless settings.author

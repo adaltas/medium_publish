@@ -1,6 +1,6 @@
 
 unified = require 'unified'
-parse = require 'remark-parse'
+markdown = require 'remark-parse'
 remark2rehype = require 'remark-rehype'
 html = require 'rehype-stringify'
 pluginTableToCode = require '../../src/plugins/table_to_code'
@@ -9,19 +9,19 @@ describe 'Markdown table to AST', ->
   
   it 'simple', ->
     {contents} = await unified()
-    .use parse
+    .use markdown
     .use pluginTableToCode
     .use remark2rehype
     .use html
     .process """
-    | a | b |
-    |---|---|
-    | a | b |
+    | 123 | b  |
+    |-----|----|
+    | 1   | ab |
     """
     contents.should.eql """
-    <pre><code>| a   | b   |
-    | --- | --- |
-    | a   | b   |
+    <pre><code>| 123 | b  |
+    | --- | -- |
+    | 1   | ab |
     </code></pre>
     """
     
