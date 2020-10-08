@@ -1,7 +1,7 @@
 
 # Changelog
 
-## Trunk
+## Version 0.2.0
 
 * extract_title: new plugin
 * package: latest dependencies
