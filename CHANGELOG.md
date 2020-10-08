@@ -1,6 +1,11 @@
 
 # Changelog
 
+## Trunk
+
+* extract_title: new plugin
+* package: latest dependencies
+
 ## Version 0.1.0
 
 * public_images: new plugin

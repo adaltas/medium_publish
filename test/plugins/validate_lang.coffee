@@ -1,6 +1,6 @@
 
 unified = require 'unified'
-parse = require 'remark-parse'
+parseMarkdown = require 'remark-parse'
 remark2rehype = require 'remark-rehype'
 html = require 'rehype-stringify'
 frontmatter = require 'remark-frontmatter'
@@ -10,7 +10,7 @@ describe 'Markdown validate lang', ->
   
   it 'simple', ->
     {frontmatter} = await unified()
-    .use parse
+    .use parseMarkdown
     .use frontmatter, ['yaml']
     .use pluginParseFrontmatter
     .use remark2rehype

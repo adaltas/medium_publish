@@ -1,9 +1,9 @@
 
 unified = require 'unified'
-parse = require 'remark-parse'
+parseMarkdown = require 'remark-parse'
 remark2rehype = require 'remark-rehype'
 html = require 'rehype-stringify'
-frontmatter = require 'remark-frontmatter'
+extractFrontmatter = require 'remark-frontmatter'
 pluginParseFrontmatter = require '../../src/plugins/parse_frontmatter'
 pluginTableToCode = require '../../src/plugins/table_to_code'
 
@@ -11,8 +11,8 @@ describe 'Markdown table to AST', ->
   
   it 'simple', ->
     {frontmatter} = await unified()
-    .use parse
-    .use frontmatter, ['yaml']
+    .use parseMarkdown
+    .use extractFrontmatter, ['yaml']
     .use pluginParseFrontmatter
     .use remark2rehype
     .use html

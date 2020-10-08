@@ -1,6 +1,6 @@
 
 unified = require 'unified'
-parse = require 'remark-parse'
+parseMarkdown = require 'remark-parse'
 remark2rehype = require 'remark-rehype'
 html = require 'rehype-stringify'
 pluginNormalizeLinks = require '../../src/plugins/normalize_links'
@@ -10,7 +10,7 @@ describe 'Normalize absolute links', ->
   
   it 'simple', ->
     {contents} = await unified()
-    .use parse
+    .use parseMarkdown
     .use pluginNormalizeLinks, baseURL: 'http://www.adaltas.com'
     .use remark2rehype
     .use html

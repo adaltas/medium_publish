@@ -1,6 +1,6 @@
 
 unified = require 'unified'
-parse = require 'remark-parse'
+parseMarkdown = require 'remark-parse'
 remark2rehype = require 'remark-rehype'
 html = require 'rehype-stringify'
 frontmatter = require 'remark-frontmatter'
@@ -12,7 +12,7 @@ describe 'Append source and author information', ->
   
   it 'simple', ->
     {contents} = await unified()
-    .use parse
+    .use parseMarkdown
     .use frontmatter, ['yaml']
     .use pluginParseFrontmatter
     .use pluginAppendSource,
@@ -36,7 +36,7 @@ describe 'Append source and author information', ->
   
   it 'authorUrl as a function', ->
     {contents} = await unified()
-    .use parse
+    .use parseMarkdown
     .use frontmatter, ['yaml']
     .use pluginParseFrontmatter
     .use pluginAppendSource,

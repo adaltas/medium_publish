@@ -19,6 +19,8 @@ catch err
     plugins = [
       plugin: require './plugins/parse_frontmatter'
     ,
+      plugin: require './plugins/extract_title'
+    ,
       plugin: require './plugins/normalize_links'
       settings:
         baseURL: config.get ['user', 'baseURL']

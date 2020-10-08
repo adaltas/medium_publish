@@ -79,6 +79,7 @@
     "patch": "npm version patch -m 'Bump to version %s'",
     "minor": "npm version minor -m 'Bump to version %s'",
     "major": "npm version major -m 'Bump to version %s'",
+    "pretest": "npm run build",
     "test": "mocha test/**/*.coffee"
   }
 }
