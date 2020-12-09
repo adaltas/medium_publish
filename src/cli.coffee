@@ -1,6 +1,6 @@
 
 params = require './params'
-app = require('parameters')(params)
+app = require('shell')(params)
 
 try
   params = app.parse()
