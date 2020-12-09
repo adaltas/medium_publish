@@ -69,3 +69,27 @@ npx medium_publish \
     Location of the markdown file
   * `target` (string, required)   
     Directory storing the git repository.
+
+## Developer
+
+Test are executed with Mocha and Should.js:
+
+```bash
+yarn test
+```
+
+Versioning and changelog generation use the `standard-version` package:
+
+```bash
+yarn release
+# Or
+yarn release --prerelease beta
+```
+
+Note, it does not push and publish. After release, run:
+
+```bash
+git push --follow-tags origin master && npm publish
+```
+
+TODO: integrate CI/CD, publish inside of it.
