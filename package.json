@@ -57,7 +57,11 @@
     "vfile-reporter": "^6.0.1"
   },
   "devDependencies": {
-    "mocha": "^8.1.3",
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^5.0.4",
+    "mocha": "^8.2.1",
     "should": "^13.2.3"
   },
   "mocha": {
@@ -81,5 +85,10 @@
     "major": "npm version major -m 'Bump to version %s'",
     "pretest": "npm run build",
     "test": "mocha test/**/*.coffee"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
