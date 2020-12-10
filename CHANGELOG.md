@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.2](https://github.com/adaltas/medium_publish/compare/v0.2.1...v0.2.2) (2020-12-10)
+
+
+### Bug Fixes
+
+* missing dependency ([e4dd81f](https://github.com/adaltas/medium_publish/commit/e4dd81fd86f6611589b8cad418b8647997a0b3ff))
+* table to code broken, need gfm ([3076ef6](https://github.com/adaltas/medium_publish/commit/3076ef6095dc8f91d0df6ecbe66328abaf434f3a))
+
 ### [0.2.1](https://github.com/adaltas/medium_publish/compare/v0.2.0...v0.2.1) (2020-12-09)
 
 
