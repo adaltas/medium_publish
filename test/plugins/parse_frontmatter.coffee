@@ -5,7 +5,6 @@ remark2rehype = require 'remark-rehype'
 html = require 'rehype-stringify'
 extractFrontmatter = require 'remark-frontmatter'
 pluginParseFrontmatter = require '../../src/plugins/parse_frontmatter'
-pluginTableToCode = require '../../src/plugins/table_to_code'
 
 describe 'Parse frontmatter', ->
   
