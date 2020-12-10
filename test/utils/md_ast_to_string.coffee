@@ -5,7 +5,7 @@ remark2rehype = require 'remark-rehype'
 html = require 'rehype-stringify'
 md_ast_to_string = require '../../src/utils/md_ast_to_string'
 
-describe 'Append source and author information', ->
+describe 'Convert an AST to a string', ->
   
   it 'simple', ->
     {contents} = await unified()
