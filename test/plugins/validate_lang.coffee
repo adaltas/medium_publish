@@ -6,7 +6,7 @@ html = require 'rehype-stringify'
 frontmatter = require 'remark-frontmatter'
 pluginParseFrontmatter = require '../../src/Plugins/parse_frontmatter'
 
-describe 'Markdown validate lang', ->
+describe 'Validate lang', ->
   
   it 'simple', ->
     {frontmatter} = await unified()

@@ -1,6 +1,7 @@
 
 unified = require 'unified'
 markdown = require 'remark-parse'
+gfm = require 'remark-gfm'
 remark2rehype = require 'remark-rehype'
 html = require 'rehype-stringify'
 pluginTableToCode = require '../../src/plugins/table_to_code'
@@ -10,6 +11,7 @@ describe 'Markdown table to AST', ->
   it 'simple', ->
     {contents} = await unified()
     .use markdown
+    .use gfm
     .use pluginTableToCode
     .use remark2rehype
     .use html

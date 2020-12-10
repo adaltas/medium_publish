@@ -9,6 +9,6 @@ module.exports = ->
       node.type = 'code'
       node.lang = null
       node.meta = null
-      node.value = value
+      node.value = value.trim()
       node.children = null
       return null

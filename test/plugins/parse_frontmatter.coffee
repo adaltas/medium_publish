@@ -7,7 +7,7 @@ extractFrontmatter = require 'remark-frontmatter'
 pluginParseFrontmatter = require '../../src/plugins/parse_frontmatter'
 pluginTableToCode = require '../../src/plugins/table_to_code'
 
-describe 'Markdown table to AST', ->
+describe 'Parse frontmatter', ->
   
   it 'simple', ->
     {frontmatter} = await unified()

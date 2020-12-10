@@ -7,7 +7,7 @@ extractFrontmatter = require 'remark-frontmatter'
 pluginParseFrontmatter = require '../../src/Plugins/parse_frontmatter'
 pluginExtractTitle = require '../../src/Plugins/extract_title'
 
-describe 'Markdown validate lang', ->
+describe 'Extract title', ->
   
   it 'without frontmatter', ->
     {frontmatter} = await unified()
