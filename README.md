@@ -52,23 +52,12 @@ npx medium_publish \
 
 ## Plugins
 
-* `medium_publish/lib/plugins/parse_frontmatter`   
+Note, for conveniency, external plugins can be installed and declared by their package name or declared with `medium_publish/lib/plugins/external/{package_name}`.
+
+* `remark-read-frontmatter`     
   Parse frontmatter and insert the "frontmatter" field in the vfile object.
-* `medium_publish/lib/plugins/public_images`   
+* `remark-public-images`   
   Upload every image present on the markdown article into a public GIT repository and update the `src` image attribute to reflect the new public URL.
-  Options:
-  * `base_url` (string, required)   
-    Base URL used to download the images.
-  * `location` (function)   
-    User function used to formal the image location relative to the repository location.
-  * `repository` (string, required)   
-    Remote GIT repository URL.
-  * `reset` (boolean, `false`)   
-    Overwrite the previous commit and images
-  * `source` (string, required)   
-    Location of the markdown file
-  * `target` (string, required)   
-    Directory storing the git repository.
 
 ## Developer
 
