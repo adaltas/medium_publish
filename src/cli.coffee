@@ -19,7 +19,7 @@ catch err
     plugins = [
       plugin: require 'remark-read-frontmatter'
     ,
-      plugin: require './plugins/extract_title'
+      plugin: require 'remark-title-to-frontmatter'
     ,
       plugin: require './plugins/normalize_links'
       settings:
