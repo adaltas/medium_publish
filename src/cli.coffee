@@ -27,7 +27,7 @@ catch err
     ,
       plugin: require 'remark-table-to-code'
     ,
-    #   plugin: require './plugins/public_images'
+    #   plugin: require 'remark-public-images'
     # ,
       plugin: require './plugins/validate_lang'
       settings:
