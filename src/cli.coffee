@@ -25,7 +25,7 @@ catch err
       settings:
         baseURL: config.get ['user', 'baseURL']
     ,
-      plugin: require './plugins/table_to_code'
+      plugin: require 'remark-table-to-code'
     ,
     #   plugin: require './plugins/public_images'
     # ,
