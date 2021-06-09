@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.3](https://github.com/adaltas/medium_publish/compare/v0.2.2...v0.2.3) (2021-06-09)
+
+
+### Features
+
+* load plugins from module name ([84e26f4](https://github.com/adaltas/medium_publish/commit/84e26f4b32ea5f379e68f87f9055ff8ff12b9f4c))
+
+
+### Bug Fixes
+
+* string interpolation to display oauth code ([642fc19](https://github.com/adaltas/medium_publish/commit/642fc19a7b985850b0cd5b278e029ee9d2958dc4))
+
 ### [0.2.2](https://github.com/adaltas/medium_publish/compare/v0.2.1...v0.2.2) (2020-12-10)
 
 
