@@ -25,6 +25,11 @@ module.exports = (config, params, plugins) ->
       config.set 'token', token
     else
       client.setAccessToken token.access_token
+    # Load the plugins
+    plugins = plugins.map (plugin) ->
+      if typeof plugin is 'string'
+      then require.main.require plugin
+      else plugin
     # Generate article
     article = await md_to_html plugins, params.source
     # Post article
