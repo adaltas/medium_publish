@@ -47,6 +47,7 @@
     "remark-frontmatter": "^3.0.0",
     "remark-gfm": "^1.0.0",
     "remark-html": "^13.0.1",
+    "remark-links-absolute": "^0.2.0",
     "remark-metadata": "^0.2.1",
     "remark-parse": "^9.0.0",
     "remark-read-frontmatter": "^0.1.0",

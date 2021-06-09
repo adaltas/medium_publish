@@ -21,7 +21,7 @@ catch err
     ,
       plugin: require 'remark-title-to-frontmatter'
     ,
-      plugin: require './plugins/normalize_links'
+      plugin: require 'remark-absolute-links'
       settings:
         baseURL: config.get ['user', 'baseURL']
     ,
