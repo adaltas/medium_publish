@@ -49,6 +49,7 @@
     "remark-html": "^13.0.1",
     "remark-metadata": "^0.2.1",
     "remark-parse": "^9.0.0",
+    "remark-read-frontmatter": "^0.1.0",
     "remark-preset-lint-markdown-style-guide": "^4.0.0",
     "remark-rehype": "^8.0.0",
     "remark-stringify": "^9.0.0",

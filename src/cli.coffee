@@ -17,7 +17,7 @@ catch err
     await config.load()
     await config.init() if process.stdin.isTTY
     plugins = [
-      plugin: require './plugins/parse_frontmatter'
+      plugin: require 'remark-read-frontmatter'
     ,
       plugin: require './plugins/extract_title'
     ,
