@@ -85,12 +85,6 @@
   },
   "scripts": {
     "build": "coffee -b -o lib src",
-    "_preversion": "grep '## Trunk' CHANGELOG.md && npm test",
-    "_version": "version=`grep '^  \"version\": ' package.json | sed 's/.*\"\\([0-9\\.]*\\)\".*/\\1/'` && sed -i \"s/## Trunk/## Version $version/\" CHANGELOG.md && git add CHANGELOG.md",
-    "_postversion": "git push && git push --tags && npm publish",
-    "_patch": "npm version patch -m 'Bump to version %s'",
-    "_minor": "npm version minor -m 'Bump to version %s'",
-    "_major": "npm version major -m 'Bump to version %s'",
     "pretest": "npm run build",
     "prepublish": "git push --follow-tags origin master",
     "publish": "npm publish",
