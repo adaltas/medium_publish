@@ -38,7 +38,7 @@ EXAMPLES
   medium_publish --help     Show this message
 ```
 
-## Exemple
+## Example
 
 Use `npx medium_publish` if installed globally or locally as a dependency. Otherwise, from inside a cloned repository, use `./bin/medium_publish`.
 
