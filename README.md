@@ -78,7 +78,7 @@ npm run release --prerelease beta
 Note, it does not push and publish. After release, run:
 
 ```bash
-npm publish
+npm run publish
 ```
 
-TODO: integrate CI/CD, publish inside of it.
+TODO: integrate CI/CD, publish from there.

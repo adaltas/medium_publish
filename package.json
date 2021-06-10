@@ -93,6 +93,7 @@
     "_major": "npm version major -m 'Bump to version %s'",
     "pretest": "npm run build",
     "prepublish": "git push --follow-tags origin master",
+    "publish": "npm publish",
     "release": "standard-version",
     "test": "mocha test/**/*.coffee"
   },
