@@ -20,21 +20,22 @@ The help print:
 
 ```
 NAME
-    medium_publish - Post draft articles on Medium
+  medium_publish - Post draft articles on Medium
 
 SYNOPSIS
-    medium_publish [medium_publish options]
+  medium_publish [medium_publish options]
 
 OPTIONS
-    --source                Path to the Markdown source code of the article. Required.
-    --url                   URL where the article is currently being published. Required.
-    --author                The name of the author. Required.
-    --author_url            URL of the author page.
-    --db                    Path to the database, default to "~/.medium_publish"
-    -h --help               Display help information
+     --author               The name of the author. Required.
+     --author_url           URL of the author page.
+     --db                   Path to the database, default to "~/.medium_publish"
+  -h --help                 Display help information
+     --langs                Accepted languages
+     --source               Path to the Mardown source code of the article. Required.
+     --url                  URL where the article is currently being published. Required.
 
 EXAMPLES
-    medium_publish --help      Show this message
+  medium_publish --help     Show this message
 ```
 
 ## Exemple
