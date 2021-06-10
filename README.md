@@ -70,15 +70,15 @@ yarn test
 Versioning and changelog generation use the `standard-version` package:
 
 ```bash
-yarn release
+npm run release
 # Or
-yarn release --prerelease beta
+npm run release --prerelease beta
 ```
 
 Note, it does not push and publish. After release, run:
 
 ```bash
-git push --follow-tags origin master && npm publish
+npm publish
 ```
 
 TODO: integrate CI/CD, publish inside of it.
