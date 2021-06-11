@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.10](https://github.com/adaltas/medium_publish/compare/v0.2.9...v0.2.10) (2021-06-11)
+
+
+### Bug Fixes
+
+* revert to-vfile version ([d3414b0](https://github.com/adaltas/medium_publish/commit/d3414b06536525d5a8ef1ca1bbf9754302cd15ee))
+
 ### [0.2.9](https://github.com/adaltas/medium_publish/compare/v0.2.8...v0.2.9) (2021-06-10)
 
 ### [0.2.8](https://github.com/adaltas/medium_publish/compare/v0.2.7...v0.2.8) (2021-06-10)
