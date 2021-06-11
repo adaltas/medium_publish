@@ -41,9 +41,9 @@ module.exports = (target) ->
       stat = await fs.stat target
     catch err
       throw err unless err.code is 'ENOENT'
-      await fs.writeFile target, yaml.safeDump {}
+      await fs.writeFile target, yaml.dump {}
     data = await fs.readFile target
-    data = yaml.safeLoad data.toString()
+    data = yaml.load data.toString()
     store = data
   get: (key) ->
     throw Error 'Config Not Loaded: database must be loaded before accessing data' unless store?
@@ -61,6 +61,6 @@ module.exports = (target) ->
       data = data[k] ?= {}
     k = key.slice(-1)
     data[k] = value
-    data = yaml.safeDump store
+    data = yaml.dump store
     await fs.writeFile target, data
     @
