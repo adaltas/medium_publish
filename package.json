@@ -87,7 +87,8 @@
     "build": "coffee -b -o lib src",
     "pretest": "npm run build",
     "prepublish": "git push --follow-tags origin master",
-    "release": "standard-version",
+    "publish": "",
+    "release": "npm test && standard-version",
     "test": "mocha test/**/*.coffee"
   },
   "config": {
