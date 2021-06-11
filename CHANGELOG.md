@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.12](https://github.com/adaltas/medium_publish/compare/v0.2.11...v0.2.12) (2021-06-11)
+
+
+### Bug Fixes
+
+* build lib ([9690031](https://github.com/adaltas/medium_publish/commit/96900319adee7d1398508ea1b483552edf85e4ea))
+
 ### [0.2.11](https://github.com/adaltas/medium_publish/compare/v0.2.10...v0.2.11) (2021-06-11)
 
 
