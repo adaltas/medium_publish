@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.11](https://github.com/adaltas/medium_publish/compare/v0.2.10...v0.2.11) (2021-06-11)
+
+
+### Bug Fixes
+
+* upgrade usage of yaml after latest upgrade ([85a1a2d](https://github.com/adaltas/medium_publish/commit/85a1a2ddc6a4ef3c9a236c74f22c09e24e7b44ab))
+
 ### [0.2.10](https://github.com/adaltas/medium_publish/compare/v0.2.9...v0.2.10) (2021-06-11)
 
 
