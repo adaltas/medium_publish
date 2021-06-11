@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.13](https://github.com/adaltas/medium_publish/compare/v0.2.12...v0.2.13) (2021-06-11)
+
+
+### Bug Fixes
+
+* rename links absolute plugin ([f5b4cf2](https://github.com/adaltas/medium_publish/commit/f5b4cf29ae7cffa1b19455b8f2b09e822270da33))
+
 ### [0.2.12](https://github.com/adaltas/medium_publish/compare/v0.2.11...v0.2.12) (2021-06-11)
 
 
