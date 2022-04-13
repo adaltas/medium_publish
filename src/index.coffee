@@ -50,8 +50,9 @@ module.exports = (config, params, plugins) ->
     sep 9, 2019
     nov 18, 2019: Uncatched error: 6000 - Access token is invalid.
     jan 22, 2020: Uncatched error: 6000 - Access token is invalid.
+    apr 13, 2022: Uncatched error: 6001 - Access token expired.
     ###
-    if err.code is 6000
+    if err.code is 6001
       await config.backup()
       await config.set ['token', 'access_token'], null
       process.stdout.write "Token expired."
