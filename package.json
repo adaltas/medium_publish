@@ -57,10 +57,10 @@
     "remark-stringify": "^9.0.1",
     "remark-table-to-code": "^0.1.0",
     "remark-title-to-frontmatter": "^0.1.1",
-    "shell": "^0.8.4",
-    "to-vfile": "^6.1.0",
     "unified": "^9.2.1",
     "unist-util-visit": "^2.0.3",
+    "shell": "^0.9.4",
+    "to-vfile": "^7.2.3",
     "vfile-reporter": "^7.0.4"
   },
   "devDependencies": {
