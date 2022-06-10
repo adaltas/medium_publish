@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.18](https://github.com/adaltas/medium_publish/compare/v0.2.17...v0.2.18) (2022-06-10)
+
+
+### Bug Fixes
+
+* latest tocken expired err code ([2ba89d5](https://github.com/adaltas/medium_publish/commit/2ba89d58f40f222afef2b716579fa21f6d3b7a5c))
+* remove coffee require in bin ([3169dee](https://github.com/adaltas/medium_publish/commit/3169dee05dc6f4fcc53745bf385456323be3d279))
+
 ### [0.2.17](https://github.com/adaltas/medium_publish/compare/v0.2.16...v0.2.17) (2021-06-11)
 
 ### [0.2.16](https://github.com/adaltas/medium_publish/compare/v0.2.15...v0.2.16) (2021-06-11)
