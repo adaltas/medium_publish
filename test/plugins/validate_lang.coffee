@@ -4,7 +4,7 @@ parseMarkdown = require 'remark-parse'
 remark2rehype = require 'remark-rehype'
 html = require 'rehype-stringify'
 frontmatter = require 'remark-frontmatter'
-pluginParseFrontmatter = require '../../src/plugins/external/remark-read-frontmatter'
+pluginParseFrontmatter = require 'remark-read-frontmatter'
 
 describe 'Validate lang', ->
   
