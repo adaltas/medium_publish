@@ -42,7 +42,7 @@ describe 'Append source and author information', ->
     .use pluginAppendSource,
       url: 'http://www.adaltas.com'
       author: 'myself'
-      authorUrl: (ast, {frontmatter: {lang}}) ->
+      authorUrl: (ast, {data: {lang}}) ->
         lang.should.eql 'en'
         'http://www.adaltas.com/author/myself/'
     .use remark2rehype

@@ -9,7 +9,7 @@ pluginParseFrontmatter = require '../../src/plugins/external/remark-read-frontma
 describe 'Validate lang', ->
   
   it 'simple', ->
-    {frontmatter} = await unified()
+    {data} = await unified()
     .use parseMarkdown
     .use frontmatter, ['yaml']
     .use pluginParseFrontmatter
@@ -20,5 +20,5 @@ describe 'Validate lang', ->
     lang: fr
     ---
     """
-    frontmatter.should.eql lang: 'fr'
+    data.should.eql lang: 'fr'
     

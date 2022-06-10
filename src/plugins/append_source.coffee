@@ -12,7 +12,7 @@ module.exports = (settings={})->
       type: 'paragraph'
       children: [
         type: 'text'
-        value: switch vfile.frontmatter.lang
+        value: switch vfile.data.lang
           when 'en' then 'This article was originally published by '
           when 'fr' then 'Cet article fut publié à l\'origine par '
       ,
@@ -20,13 +20,13 @@ module.exports = (settings={})->
         url: settings.url
         children: [
           type: 'text'
-          value: switch vfile.frontmatter.lang
+          value: switch vfile.data.lang
             when 'en' then 'Adaltas'
             when 'fr' then 'Adaltas'
         ]
       ,
         type: 'text'
-        value: switch vfile.frontmatter.lang
+        value: switch vfile.data.lang
           when 'en' then ' and was written by '
           when 'fr' then ' et fut rédigé par '
       ,

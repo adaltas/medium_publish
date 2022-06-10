@@ -23,19 +23,19 @@ module.exports =
           then reject err
           else resolve access_token
   post_article: (client, params, article) ->
-    throw Error 'Required Property: article.frontmatter.title' unless article.frontmatter.title
+    throw Error 'Required Property: article.data.title' unless article.data.title
     throw Error 'Required Property: article.contents' unless article.contents
     new Promise (resolve, reject) ->
       client.getUser (err, user) ->
         return reject err if err
         client.createPost
           userId: user.id
-          title: article.frontmatter.title
+          title: article.data.title
           contentFormat: medium.PostContentFormat.HTML
           content: article.contents
           publishStatus: medium.PostPublishStatus.DRAFT
           canonicalUrl: params.url
-          tags: article.frontmatter.tags
+          tags: article.data.tags
         , (err, post) ->
           if err
           then reject err
