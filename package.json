@@ -57,8 +57,8 @@
     "remark-table-to-code": "^0.1.0",
     "unified": "^9.2.1",
     "unist-util-visit": "^2.0.3",
-    "remark-read-frontmatter": "^0.1.4",
-    "remark-title-to-frontmatter": "^0.1.5",
+    "remark-read-frontmatter": "^0.2.1",
+    "remark-title-to-frontmatter": "^0.1.9",
     "shell": "^0.9.4",
     "to-vfile": "^6.1.0",
     "vfile-reporter": "^7.0.4"
