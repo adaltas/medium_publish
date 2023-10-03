@@ -36,8 +36,8 @@
   },
   "dependencies": {
     "coffeescript": "^2.7.0",
-    "hast-util-is-element": "^2.1.2",
-    "hast-util-to-text": "^3.1.1",
+    "hast-util-is-element": "^3.0.0",
+    "hast-util-to-text": "^4.0.0",
     "js-yaml": "^4.1.0",
     "medium-sdk": "^0.0.4",
     "rehype-document": "^5.1.0",
@@ -64,11 +64,11 @@
     "vfile-reporter": "^7.0.4"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.0.2",
-    "@commitlint/config-conventional": "^17.0.2",
+    "@commitlint/cli": "^17.7.2",
+    "@commitlint/config-conventional": "^17.7.0",
     "cz-conventional-changelog": "^3.3.0",
-    "husky": "^8.0.1",
-    "mocha": "^10.0.0",
+    "husky": "^8.0.3",
+    "mocha": "^10.2.0",
     "should": "^13.2.3",
     "standard-version": "^9.5.0"
   },
