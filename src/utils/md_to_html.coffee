@@ -1,6 +1,6 @@
 
-import vfile from 'to-vfile'
-import unified from 'unified'
+import {read} from 'to-vfile'
+import {unified} from 'unified'
 import doc from 'rehype-document'
 import gfm from 'remark-gfm'
 import markdownParse from 'remark-parse'
@@ -8,6 +8,7 @@ import remark2rehype from 'remark-rehype'
 import frontmatter from 'remark-frontmatter'
 import format from 'rehype-format'
 import html from 'rehype-stringify'
+
 
 export default (plugins, source) ->
   await unified()
@@ -19,4 +20,4 @@ export default (plugins, source) ->
   .use doc
   .use format
   .use html
-  .process await vfile.read source
+  .process await read source

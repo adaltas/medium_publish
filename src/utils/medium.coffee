@@ -25,7 +25,7 @@ exchange_access_token = (client, config, refresh_token) ->
 
 post_article = (client, params, article) ->
     throw Error 'Required Property: article.data.title' unless article.data.title
-    throw Error 'Required Property: article.contents' unless article.contents
+    throw Error 'Required Property: article.value' unless article.value
     new Promise (resolve, reject) ->
       client.getUser (err, user) ->
         return reject err if err
@@ -33,7 +33,7 @@ post_article = (client, params, article) ->
           userId: user.id
           title: article.data.title
           contentFormat: medium.PostContentFormat.HTML
-          content: article.contents
+          content: article.value
           publishStatus: medium.PostPublishStatus.DRAFT
           canonicalUrl: params.url
           tags: article.data.tags

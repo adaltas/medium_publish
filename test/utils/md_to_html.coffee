@@ -8,9 +8,9 @@ describe 'Utils `md_to_html`', ->
   
   it 'Without plugins', ->
     source = path.join(os.tmpdir(), './medium_publish_source')
-    fs.writeFile source, """
+    await fs.writeFile source, """
     # Title
     """
     vfile = await md_to_html [], source
-    vfile.contents.should.containEql '<h1>Title</h1>'
+    vfile.value.should.containEql '<h1>Title</h1>'
     

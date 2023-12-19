@@ -1,5 +1,5 @@
 
-import unified from 'unified'
+import {unified} from 'unified'
 import parseMarkdown from 'remark-parse'
 import remark2rehype from 'remark-rehype'
 import html from 'rehype-stringify'
@@ -11,7 +11,7 @@ import pluginAppendSource from 'medium_publish/plugins/append_source'
 describe 'Append source and author information', ->
   
   it 'simple', ->
-    {contents} = await unified()
+    {value} = await unified()
     .use parseMarkdown
     .use frontmatter, ['yaml']
     .use pluginParseFrontmatter
@@ -29,13 +29,13 @@ describe 'Append source and author information', ->
     
     Article content.
     """
-    contents.trim().should.eql """
+    value.trim().should.eql """
     <p>Article content.</p>
     <p>This article was originally published by <a href="http://www.adaltas.com">Adaltas</a> and was written by <a href="http://www.adaltas.com/author/myself/">myself</a>.</p>
     """
   
   it 'authorUrl as a function', ->
-    {contents} = await unified()
+    {value} = await unified()
     .use parseMarkdown
     .use frontmatter, ['yaml']
     .use pluginParseFrontmatter
@@ -55,7 +55,7 @@ describe 'Append source and author information', ->
     
     Article content.
     """
-    contents.trim().should.eql """
+    value.trim().should.eql """
     <p>Article content.</p>
     <p>This article was originally published by <a href="http://www.adaltas.com">Adaltas</a> and was written by <a href="http://www.adaltas.com/author/myself/">myself</a>.</p>
     """
