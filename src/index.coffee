@@ -1,8 +1,8 @@
-medium = require 'medium-sdk'
-md_to_html = require './utils/md_to_html'
-{get_refresh_token, exchange_access_token, post_article} = require './utils/medium'
+import medium from 'medium-sdk'
+import md_to_html from 'medium_publish/utils/md_to_html'
+import {get_refresh_token, exchange_access_token, post_article} from 'medium_publish/utils/medium'
 
-module.exports = (config, params, plugins) ->
+export default (config, params, plugins) ->
   try
     await config.load()
     # Initialise the Medium client

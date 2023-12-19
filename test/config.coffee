@@ -1,7 +1,7 @@
 
-os = require 'os'
-path = require 'path'
-config = require '../src/config'
+import os from 'node:os'
+import path from 'node:path'
+import config from 'medium_publish/config'
 
 describe 'Config', ->
   

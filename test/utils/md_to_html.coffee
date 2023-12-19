@@ -1,8 +1,8 @@
 
-os = require 'os'
-path = require 'path'
-{promises: fs} = require 'fs'
-md_to_html = require '../../src/utils/md_to_html'
+import os from 'os'
+import path from 'path'
+import fs from 'fs/promises'
+import md_to_html from 'medium_publish/utils/md_to_html'
 
 describe 'Utils `md_to_html`', ->
   

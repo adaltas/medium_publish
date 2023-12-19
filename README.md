@@ -53,7 +53,7 @@ npx medium_publish \
 
 ## Plugins
 
-Note, for conveniency, external plugins can be installed and declared by their package name or declared with `medium_publish/lib/plugins/external/{package_name}`.
+Note, for conveniency, external plugins can be installed and declared by their package name or declared with `medium_publish/plugins/external/{package_name}`.
 
 * `remark-read-frontmatter`     
   Parse frontmatter and insert the "frontmatter" field in the vfile object.

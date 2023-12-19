@@ -1,5 +1,5 @@
 
-module.exports = (settings={})->
+export default (settings={})->
   throw Error 'Invalid Settings: missing the `url` field' unless settings.url
   throw Error 'Invalid Settings: missing the `author` field' unless settings.author
   throw Error 'Invalid Settings: missing the `authorUrl` field' unless settings.authorUrl

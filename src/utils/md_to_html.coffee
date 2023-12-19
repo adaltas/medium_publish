@@ -1,15 +1,15 @@
 
-vfile = require 'to-vfile'
-unified = require 'unified'
-doc = require 'rehype-document'
-gfm = require 'remark-gfm'
-markdownParse = require 'remark-parse'
-remark2rehype = require 'remark-rehype'
-frontmatter = require 'remark-frontmatter'
-format = require 'rehype-format'
-html = require 'rehype-stringify'
+import vfile from 'to-vfile'
+import unified from 'unified'
+import doc from 'rehype-document'
+import gfm from 'remark-gfm'
+import markdownParse from 'remark-parse'
+import remark2rehype from 'remark-rehype'
+import frontmatter from 'remark-frontmatter'
+import format from 'rehype-format'
+import html from 'rehype-stringify'
 
-module.exports = (plugins, source) ->
+export default (plugins, source) ->
   await unified()
   .use markdownParse
   .use gfm

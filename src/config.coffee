@@ -1,9 +1,9 @@
 
-fs = require('fs').promises
-yaml = require 'js-yaml'
-ask = require './utils/ask'
+import fs from 'fs/promises'
+import yaml from  'js-yaml'
+import ask from  'medium_publish/utils/ask'
 
-module.exports = (target) ->
+export default (target) ->
   store = null
   backup: ->
     await fs.copyFile target, target+'.bck'

@@ -1,10 +1,10 @@
 
-unified = require 'unified'
-parseMarkdown = require 'remark-parse'
-remark2rehype = require 'remark-rehype'
-html = require 'rehype-stringify'
-frontmatter = require 'remark-frontmatter'
-pluginParseFrontmatter = require 'remark-read-frontmatter'
+import unified from 'unified'
+import parseMarkdown from 'remark-parse'
+import remark2rehype from 'remark-rehype'
+import html from 'rehype-stringify'
+import frontmatter from 'remark-frontmatter'
+import pluginParseFrontmatter from 'remark-read-frontmatter'
 
 describe 'Validate lang', ->
   

@@ -1,7 +1,7 @@
 
-readline = require 'readline'
+import readline from 'readline'
   
-module.exports = (question) ->
+export default (question) ->
   new Promise (resolve) ->
     rl = readline.createInterface
       input: process.stdin

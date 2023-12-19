@@ -1,9 +1,8 @@
 
-medium = require 'medium-sdk'
-ask = require './ask'
+import medium from 'medium-sdk'
+import ask from 'medium_publish/utils/ask'
 
-module.exports =
-  get_refresh_token: (client, config) ->
+get_refresh_token = (client, config) ->
     redirectURL = config.get ['medium', 'redirectURL']
     new Promise (resolve) ->
       url = client.getAuthorizationUrl 'secretState', redirectURL, [
@@ -14,7 +13,8 @@ module.exports =
       process.stdout.write 'paste the code in the redirect URL\n'
       process.stdout.write "#{url}\n"
       resolve await ask 'Secret'
-  exchange_access_token: (client, config, refresh_token) ->
+
+exchange_access_token = (client, config, refresh_token) ->
     redirectURL = config.get ['medium', 'redirectURL']
     new Promise (resolve, reject) ->
       client.exchangeAuthorizationCode refresh_token, redirectURL,
@@ -22,7 +22,8 @@ module.exports =
           if err
           then reject err
           else resolve access_token
-  post_article: (client, params, article) ->
+
+post_article = (client, params, article) ->
     throw Error 'Required Property: article.data.title' unless article.data.title
     throw Error 'Required Property: article.contents' unless article.contents
     new Promise (resolve, reject) ->
@@ -40,3 +41,5 @@ module.exports =
           if err
           then reject err
           else resolve post
+
+export { get_refresh_token, exchange_access_token, post_article }

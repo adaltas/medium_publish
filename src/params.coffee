@@ -1,5 +1,5 @@
 
-module.exports =
+export default
   name: 'medium_publish'
   description: 'Post draft articles on Medium'
   options:

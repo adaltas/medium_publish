@@ -1,12 +1,12 @@
 
-unified = require 'unified'
-parseMarkdown = require 'remark-parse'
-remark2rehype = require 'remark-rehype'
-html = require 'rehype-stringify'
-frontmatter = require 'remark-frontmatter'
-format = require 'rehype-format'
-pluginParseFrontmatter = require 'remark-read-frontmatter'
-pluginAppendSource = require '../../src/plugins/append_source'
+import unified from 'unified'
+import parseMarkdown from 'remark-parse'
+import remark2rehype from 'remark-rehype'
+import html from 'rehype-stringify'
+import frontmatter from 'remark-frontmatter'
+import format from 'rehype-format'
+import pluginParseFrontmatter from 'remark-read-frontmatter'
+import pluginAppendSource from 'medium_publish/plugins/append_source'
 
 describe 'Append source and author information', ->
   

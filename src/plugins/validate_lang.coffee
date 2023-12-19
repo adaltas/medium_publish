@@ -1,5 +1,5 @@
 
-module.exports = (settings) ->
+export default (settings) ->
   settings.langs ?= []
   (ast, vfile) ->
     return unless settings.langs.length
