@@ -1,4 +1,3 @@
-
 # medium_publish - Publish draft articles from Markdown to Medium
 
 This little CLI application is used internally by [Adatas](http://www.adaltas.com) to export our articles as draft into Medium. It is generic enough to be usable and shall be easy to customize to your fit custom needs. It run as a [Node.js](https://nodejs.org) application and the source code is written in [CoffeeScript](https://coffeescript.org)
@@ -55,9 +54,9 @@ npx medium_publish \
 
 Note, for conveniency, external plugins can be installed and declared by their package name or declared with `medium_publish/plugins/external/{package_name}`.
 
-* `remark-read-frontmatter`     
+- `remark-read-frontmatter`  
   Parse frontmatter and insert the "frontmatter" field in the vfile object.
-* `remark-public-images`   
+- `remark-public-images`  
   Upload every image present on the markdown article into a public GIT repository and update the `src` image attribute to reflect the new public URL.
 
 ## Developer
@@ -65,7 +64,7 @@ Note, for conveniency, external plugins can be installed and declared by their p
 Test are executed with Mocha and Should.js:
 
 ```bash
-yarn test
+npm test
 ```
 
 Versioning and changelog generation use the `standard-version` package:
