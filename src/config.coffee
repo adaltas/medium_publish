@@ -12,7 +12,7 @@ export default (target) ->
     unless this.get ['medium']
       process.stdout.write """
       Please register your application token
-      From the Medium > Settings > Developers > Manage applications
+      From the Medium > Settings > Security and apps > Developer applications
       Create a new application and report below the requested informations.
       
       """
